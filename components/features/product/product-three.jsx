@@ -130,15 +130,17 @@ function ProductThree(props) {
                     } */}
                 </div>
 
-                <div className="ratings-container">
-                    <div className="ratings-full">
-                        {`${product.reviewSummary.numberOfReviews} ratings`}
-                        <span className="ratings" style={{ width: 20 * product.reviewSummary.numberOfReviews + '%' }}></span>
-                        <span className="tooltiptext tooltip-top">{toDecimal(product.reviewSummary.summationOfRatings / product.reviewSummary.numberOfReviews)}</span>
-                    </div>
+                {product.reviewSummary &&
+                    <div className="ratings-container">
+                        <div className="ratings-full">
+                            {`${product.reviewSummary.numberOfReviews} ratings`}
+                            <span className="ratings" style={{ width: 20 * product.reviewSummary.numberOfReviews + '%' }}></span>
+                            <span className="tooltiptext tooltip-top">{toDecimal(product.reviewSummary.summationOfRatings / product.reviewSummary.numberOfReviews)}</span>
+                        </div>
 
-                    <ALink href={`/product/default/${product.slug}`} className="rating-reviews">( {product.reviews} reviews )</ALink>
-                </div>
+                        <ALink href={`/product/default/${product.slug}`} className="rating-reviews">( {product.reviews} reviews )</ALink>
+                    </div>
+                }
 
                 <div className="product-action">
                     {
