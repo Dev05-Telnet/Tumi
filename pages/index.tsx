@@ -4,10 +4,11 @@ import { ProductCard } from '@components/product'
 import IntroSection from '@components/partials/home/intro-section'
 import ProductCollection from '@components/partials/home/product-collection'
 import { Grid, Marquee, Hero } from '@components/ui'
-// import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
+import BannerSection from '@components/partials/home/banner-section';
+import BannerSectionTwo from '@components/partials/home/banner-section-two';
+import FeaturedCollection from '@components/partials/home/featured-collection';
+import TopRatedCollection from '@components/partials/home/top-rated-collection';
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
-
-import { parseContent } from '@utils';
 
 export async function getStaticProps({
   preview,
@@ -27,6 +28,9 @@ export async function getStaticProps({
   const { products } = await productsPromise
   const { pages } = await pagesPromise
   const { categories, brands } = await siteInfoPromise
+  
+  console.log("products by AFEEF");
+  console.log(products);
 
   return {
     props: {
@@ -39,6 +43,7 @@ export async function getStaticProps({
   }
 }
 
+var loading = false;
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -54,51 +59,32 @@ export default function Home({
 
           <ProductCollection products={products} />
 
+          <BannerSection />
+
+          <FeaturedCollection products={products.slice(3, 8)} loading={loading} />
+
+          <BannerSectionTwo />
+
+          <TopRatedCollection products={products.slice(5, 10)} loading={loading} />
+
+
+          <Marquee variant="secondary">
+            {products.slice(0, 3).map((product: any, i: number) => (
+              <ProductCard key={product.id} product={product} variant="slim" />
+            ))}
+          </Marquee>
+
+          <Hero
+            headline=" Dessert dragée halvah croissant."
+            description="Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll cheesecake pie carrot cake. "
+          />
+          <Marquee>
+            {products.slice(3).map((product: any, i: number) => (
+              <ProductCard key={product.id} product={product} variant="slim" />
+            ))}
+          </Marquee>
         </div>
       </div>
-      <Grid variant="filled">
-        {products.slice(0, 3).map((product: any, i: number) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            imgProps={{
-              width: i === 0 ? 1080 : 540,
-              height: i === 0 ? 1080 : 540,
-            }}
-          />
-        ))}
-      </Grid>
-      <Marquee variant="secondary">
-        {products.slice(0, 3).map((product: any, i: number) => (
-          <ProductCard key={product.id} product={product} variant="slim" />
-        ))}
-      </Marquee>
-      <Hero
-        headline=" Dessert dragée halvah croissant."
-        description="Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll cheesecake pie carrot cake. "
-      />
-      <Grid layout="B" variant="filled">
-        {products.slice(0, 3).map((product: any, i: number) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            imgProps={{
-              width: i === 0 ? 1080 : 540,
-              height: i === 0 ? 1080 : 540,
-            }}
-          />
-        ))}
-      </Grid>
-      <Marquee>
-        {products.slice(3).map((product: any, i: number) => (
-          <ProductCard key={product.id} product={product} variant="slim" />
-        ))}
-      </Marquee>
-      {/* <HomeAllProductsGrid
-        newestProducts={products}
-        categories={categories}
-        brands={brands}
-      /> */}
     </>
   )
 }

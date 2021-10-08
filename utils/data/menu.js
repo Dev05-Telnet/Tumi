@@ -67,19 +67,19 @@ export const mainMenu = {
         "pages": [
             {
                 "title": "Simple Product",
-                "url": "product/default/beyond-top-men-s-hiking-hat"
+                "url": "product/beyond-top-men-s-hiking-hat"
             },
             {
                 "title": "Variable Product",
-                "url": "product/default/casual-men-s-t-shirt"
+                "url": "product/casual-men-s-t-shirt"
             },
             {
                 "title": "Sale Product",
-                "url": "product/default/women-s-black-bag"
+                "url": "product/women-s-black-bag"
             },
             {
                 "title": "Feature & On Sale",
-                "url": "product/default/women-s-green-bag"
+                "url": "product/women-s-green-bag"
             },
             {
                 "title": "With Left Sidebar",

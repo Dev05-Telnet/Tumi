@@ -19,8 +19,6 @@ function ProductCollection( props ) {
 
     const { products } = props;
 
-    console.log(products)
-
     var loading = false;
     
     let categoryList = [

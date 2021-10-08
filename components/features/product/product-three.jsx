@@ -101,7 +101,7 @@ function ProductThree(props) {
                 }
 
                 <h3 className="product-name">
-                    <ALink href={`/product/default/${product.slug}`}>{product.name}</ALink>
+                    <ALink href={`/product/${product.slug}`}>{product.name}</ALink>
                 </h3>
 
                 <div className="product-price">
@@ -138,14 +138,14 @@ function ProductThree(props) {
                             <span className="tooltiptext tooltip-top">{toDecimal(product.reviewSummary.summationOfRatings / product.reviewSummary.numberOfReviews)}</span>
                         </div>
 
-                        <ALink href={`/product/default/${product.slug}`} className="rating-reviews">( {product.reviews} reviews )</ALink>
+                        <ALink href={`/product/${product.slug}`} className="rating-reviews">( {product.reviews} reviews )</ALink>
                     </div>
                 }
 
                 <div className="product-action">
                     {
                         product.variants.length > 0 ?
-                            <ALink href={`/product/default/${product.slug}`} className="btn-product btn-cart" title="Go to product">
+                            <ALink href={`/product/${product.slug}`} className="btn-product btn-cart" title="Go to product">
                                 <span>Select Options</span>
                             </ALink> :
                             <a href="#" className="btn-product btn-cart" title="Add to cart" onClick={addToCartHandler}>
