@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 0d0a40a8cc0b16371ba1142a6d4a5fa770ef9b59 Dev05-Telnet <dev05.telnet@gmail.com> 1633501873 +0530	branch: Created from HEAD
+0d0a40a8cc0b16371ba1142a6d4a5fa770ef9b59 1ca39b27d8651664257fadcfe4137ba71e69f06f Dev05-Telnet <dev05.telnet@gmail.com> 1633501899 +0530	commit: 1 - Copied folders - "UTILS" and "PUBLIC" entirely
+1ca39b27d8651664257fadcfe4137ba71e69f06f 36fc5cf5d13a467727bc64348822ed6765c86bd7 Dev05-Telnet <dev05.telnet@gmail.com> 1633611688 +0530	commit: Added ProductCollection component
