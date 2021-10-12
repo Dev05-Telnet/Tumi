@@ -1,8 +1,0 @@
-0000000000000000000000000000000000000000 164fae983d99f535877cf34a6c9b4d9ae7343ebb Dev05-Telnet <dev05.telnet@gmail.com> 1633335452 +0530	clone: from https://github.com/TelNet-Info-Solutions/Nextjs-BigCommerce.git
-164fae983d99f535877cf34a6c9b4d9ae7343ebb 164fae983d99f535877cf34a6c9b4d9ae7343ebb Dev05-Telnet <dev05.telnet@gmail.com> 1633347412 +0530	checkout: moving from main to demo-25
-164fae983d99f535877cf34a6c9b4d9ae7343ebb 164fae983d99f535877cf34a6c9b4d9ae7343ebb Dev05-Telnet <dev05.telnet@gmail.com> 1633347512 +0530	checkout: moving from demo-25 to main
-164fae983d99f535877cf34a6c9b4d9ae7343ebb 0d0a40a8cc0b16371ba1142a6d4a5fa770ef9b59 Dev05-Telnet <dev05.telnet@gmail.com> 1633347558 +0530	commit: initial setup
-0d0a40a8cc0b16371ba1142a6d4a5fa770ef9b59 0d0a40a8cc0b16371ba1142a6d4a5fa770ef9b59 Dev05-Telnet <dev05.telnet@gmail.com> 1633347724 +0530	checkout: moving from main to demo-25
-0d0a40a8cc0b16371ba1142a6d4a5fa770ef9b59 0d0a40a8cc0b16371ba1142a6d4a5fa770ef9b59 Dev05-Telnet <dev05.telnet@gmail.com> 1633501873 +0530	checkout: moving from demo-25 to tumi-example-afeef
-0d0a40a8cc0b16371ba1142a6d4a5fa770ef9b59 1ca39b27d8651664257fadcfe4137ba71e69f06f Dev05-Telnet <dev05.telnet@gmail.com> 1633501899 +0530	commit: 1 - Copied folders - "UTILS" and "PUBLIC" entirely
-1ca39b27d8651664257fadcfe4137ba71e69f06f 36fc5cf5d13a467727bc64348822ed6765c86bd7 Dev05-Telnet <dev05.telnet@gmail.com> 1633611688 +0530	commit: Added ProductCollection component
