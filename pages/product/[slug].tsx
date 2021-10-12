@@ -4,9 +4,13 @@ import type {
   InferGetStaticPropsType,
 } from 'next'
 import { useRouter } from 'next/router'
+import Helmet from 'react-helmet';
 import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { ProductView } from '@components/product'
+
+import MediaThree from '@components/partials/product/media/media-three';
+import DetailOne from '@components/partials/product/detail/detail-one';
 
 export async function getStaticProps({
   params,
@@ -54,12 +58,12 @@ export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   return {
     paths: locales
       ? locales.reduce<string[]>((arr, locale) => {
-          // Add a product path for every locale
-          products.forEach((product: any) => {
-            arr.push(`/${locale}/product${product.path}`)
-          })
-          return arr
-        }, [])
+        // Add a product path for every locale
+        products.forEach((product: any) => {
+          arr.push(`/${locale}/product${product.path}`)
+        })
+        return arr
+      }, [])
       : products.map((product: any) => `/product${product.path}`),
     fallback: 'blocking',
   }
@@ -71,10 +75,35 @@ export default function Slug({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
 
+  const loaded = true;
+
   return router.isFallback ? (
     <h1>Loading...</h1>
   ) : (
-    <ProductView product={product} relatedProducts={relatedProducts} />
+    <>
+      <Helmet>
+        <title>Riode React eCommerce Template | Product Masonry</title>
+      </Helmet>
+
+      <div className={`page-content mb-10 pb-6 ${loaded ? '' : 'd-none'}`}>
+        <div className="container skeleton-body">
+          <div className="product product-single row mb-2">
+            <div className="col-md-6">
+              <MediaThree product={product} />
+            </div>
+
+            <div className="col-md-6">
+              <DetailOne product = {product} data={{}} isStickyCart isDesc={true}/>
+            </div>
+          </div>
+
+          {/* <DescOne product={product} isGuide={false} isShipping={true} /> */}
+
+          {/* <RelatedProducts products={related} /> */}
+        </div>
+      </div>
+      <ProductView product={product} relatedProducts={relatedProducts} />
+    </>
   )
 }
 
