@@ -3,17 +3,12 @@ import { connect } from 'react-redux';
 import { useUI } from '@components/ui'
 import { useAddItem } from '@framework/cart'
 import { useRouter } from 'next/router';
-import Collapse from 'react-bootstrap/collapse';
-
 
 import ALink from '@components/features/custom-link';
 import Countdown from '@components/features/countdown';
 import Quantity from '@components/features/quantity';
 
 import ProductNav from '@components/partials/product/product-nav';
-
-// import { wishlistActions } from '@store/wishlist';
-// import { cartActions } from '@store/cart';
 
 import { toDecimal } from '@utils';
 
@@ -271,18 +266,15 @@ function DetailOne(props) {
                                             </select>
                                         </div>
 
-                                        <Collapse in={'null' !== curColor || 'null' !== curSize}>
                                             <div className="card-wrapper overflow-hidden reset-value-button w-100 mb-0">
                                                 <ALink href='#' className='product-variation-clean' onClick={resetValueHandler}>Clean All</ALink>
                                             </div>
-                                        </Collapse>
                                     </div>
                                 </div> : ""
                         }
 
 
                         <div className='product-variation-price'>
-                            <Collapse in={cartActive && curIndex > -1}>
                                 <div className="card-wrapper">
                                     {
                                         curIndex > -1 ?
@@ -302,7 +294,6 @@ function DetailOne(props) {
                                             </div> : ''
                                     }
                                 </div>
-                            </Collapse>
                         </div>
                     </> : ''
             }
