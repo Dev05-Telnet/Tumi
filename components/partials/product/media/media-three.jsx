@@ -24,7 +24,6 @@ export default function MediaThree(props) {
 
     return (
         <>
-            <div>media three</div>
             <div className="product-gallery row pb-0">
                 {
                     product.images.slice(0, 5).map((image, index) =>

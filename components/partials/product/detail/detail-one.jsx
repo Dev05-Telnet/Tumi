@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useUI } from '@components/ui'
+import { useAddItem } from '@framework/cart'
 import { useRouter } from 'next/router';
 import Collapse from 'react-bootstrap/collapse';
 
@@ -114,6 +116,24 @@ function DetailOne(props) {
             } else {
                 addToCart({ ...product, qty: quantity, price: product.price[0] });
             }
+        }
+    }
+
+    const [loading, setLoading] = useState(false)
+    const addItem = useAddItem()
+    const { openSidebar } = useUI()
+
+    const bcAddToCart = async () => {
+        setLoading(true)
+        try {
+            await addItem({
+                productId: String(product.id),
+                // variantId: String(variant ? variant.id : product.variants[0].id),
+            })
+            openSidebar()
+            setLoading(false)
+        } catch (err) {
+            setLoading(false)
         }
     }
 
@@ -295,13 +315,13 @@ function DetailOne(props) {
                         <div className="container">
                             <div className="sticky-product-details">
                                 <figure className="product-image">
-                                    <ALink href={'/product/default/' + product.slug}>
+                                    <ALink href={'/product' + product.path}>
                                         <img src={product.images[0].url} width="90" height="90"
                                             alt="Product" />
                                     </ALink>
                                 </figure>
                                 <div>
-                                    <h4 className="product-title"><ALink href={'/product/default/' + product.slug}>{product.name}</ALink></h4>
+                                    <h4 className="product-title"><ALink href={'/product' + product.path}>{product.name}</ALink></h4>
                                     <div className="product-info">
                                         <div className="product-price mb-0">
                                             {
@@ -347,7 +367,7 @@ function DetailOne(props) {
                                 <label className="d-none">QTY:</label>
                                 <div className="product-form-group">
                                     <Quantity max={product.stock} product={product} onChangeQty={changeQty} />
-                                    <button className={`btn-product btn-cart text-normal ls-normal font-weight-semi-bold ${cartActive ? '' : 'disabled'}`} onClick={addToCartHandler}><i className='d-icon-bag'></i>Add to Cart</button>
+                                    <button className={`btn-product btn-cart text-normal ls-normal font-weight-semi-bold`} onClick={bcAddToCart}><i className='d-icon-bag'></i>Add to Cart</button>
                                 </div>
                             </div>
                         </div>
