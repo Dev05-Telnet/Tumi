@@ -11,6 +11,7 @@ import { ProductView } from '@components/product'
 
 import MediaThree from '@components/partials/product/media/media-three';
 import DetailOne from '@components/partials/product/detail/detail-one';
+import DescOne from '@components/partials/product/desc/desc-one';
 
 export async function getStaticProps({
   params,
@@ -93,16 +94,15 @@ export default function Slug({
             </div>
 
             <div className="col-md-6">
-              <DetailOne product = {product} data={{}} isStickyCart isDesc={true}/>
+              <DetailOne product={product} data={{}} isStickyCart isDesc={true} />
             </div>
           </div>
 
-          {/* <DescOne product={product} isGuide={false} isShipping={true} /> */}
+          <DescOne product={product} isGuide={false} isShipping={true} />
 
           {/* <RelatedProducts products={related} /> */}
         </div>
       </div>
-      <ProductView product={product} relatedProducts={relatedProducts} />
     </>
   )
 }
