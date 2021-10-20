@@ -12,7 +12,7 @@ const CardsCarousel = ({ slice }) => {
             <RichText render={slice.primary.description} />
             <OwlCarousel adClass="owl-theme owl-nav-full" options={productSlider}>
                 {slice.items.map((item, index) =>
-                    <div>
+                    <div key={`card-item-${index}`}>
                         <RichText render={item.title} />
                         <GalleryItem item={item} key={index} />
                         <RichText render={item.content} />
