@@ -16,6 +16,7 @@ import { Client } from '@utils/prismicHelpers'
 
 export async function getStaticProps({
   preview,
+  previewData = {},
   locale,
   locales,
 }: GetStaticPropsContext) {
@@ -33,11 +34,12 @@ export async function getStaticProps({
   const { pages } = await pagesPromise
   const { categories, brands } = await siteInfoPromise
 
+  const { ref } : any = previewData
   const client = Client()
 
   // const doc = await client.getSingle('american_tourister', {}) || {}
   // get homepage of american tourister by ID
-  const homePage = await client.getByID('YW6FtBIAAJvfAdDu', {}) || {}
+  const homePage = await client.getByID('YW6FtBIAAJvfAdDu', ref ? { ref } : {}) || {}
   return {
     props: {
       products,
