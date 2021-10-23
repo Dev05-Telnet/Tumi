@@ -2,7 +2,8 @@ import Link from "next/link";
 
 // import { parseContent } from 'utils';
 
-export default function ALink ( { children, className, content, style, ...props } ) {
+export default function 
+ALink ( { children, className, content, style, ...props } ) {
 
     const preventDefault = ( e ) => {
         if ( props.href === '#' ) {
@@ -22,6 +23,7 @@ export default function ALink ( { children, className, content, style, ...props 
                 </a>
             </Link> :
             <Link { ...props } >
+            
                 <a className={ className } style={ style } onClick={ preventDefault }>
                     { children }
                 </a>

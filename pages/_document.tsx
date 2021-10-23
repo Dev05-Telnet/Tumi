@@ -16,6 +16,7 @@ class MyDocument extends Document {
         <body className="loading">
           <Main />
           <script src="./js/jquery.min.js"></script>
+          <script async defer src="https://static.cdn.prismic.io/prismic.js?new=true&repo=nextayatademo"></script>
           <NextScript />
         </body>
       </Html>
