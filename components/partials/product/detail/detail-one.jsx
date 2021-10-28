@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { useUI } from '@components/ui'
+import { useUI, Text } from '@components/ui'
 import { useAddItem } from '@framework/cart'
 import { useRouter } from 'next/router';
 
@@ -11,8 +10,12 @@ import Quantity from '@components/features/quantity';
 import ProductNav from '@components/partials/product/product-nav';
 
 import { toDecimal } from '@utils';
+import { ProductOptions } from '@components/product'
 
 function DetailOne(props) {
+
+    const [selectedOptions, setSelectedOptions] = useState ({})
+
     let router = useRouter();
     const { data, product, isStickyCart = false, adClass = '', isNav = true } = props;
     const { toggleWishlist, addToCart, wishlist } = props;
@@ -191,6 +194,7 @@ function DetailOne(props) {
 
                 <ins className="new-price">${toDecimal(product.price.value)}</ins>
 
+                <del className="old-price">${toDecimal(product.price.value * 1.2)}</del>
                 {/* {
                     product.price[0] !== product.price[1] ?
                         product.variants.length === 0 || (product.variants.length > 0 && !product.variants[0].price) ?
@@ -226,7 +230,17 @@ function DetailOne(props) {
                 <ALink href="#" className="rating-reviews">( {product.reviewSummary.numberOfReviews} reviews )</ALink>
             </div>
 
-            <p className="product-short-desc">{product.short_description}</p>
+            <ProductOptions
+                options={product.options}
+                selectedOptions={selectedOptions}
+                setSelectedOptions={setSelectedOptions}
+            />
+
+            <Text
+                className="pb-4 break-words w-full max-w-xl"
+                html={product.descriptionHtml || product.description}
+            />
+
 
             {
                 product && product.variants.length > 0 ?
@@ -266,34 +280,34 @@ function DetailOne(props) {
                                             </select>
                                         </div>
 
-                                            <div className="card-wrapper overflow-hidden reset-value-button w-100 mb-0">
-                                                <ALink href='#' className='product-variation-clean' onClick={resetValueHandler}>Clean All</ALink>
-                                            </div>
+                                        <div className="card-wrapper overflow-hidden reset-value-button w-100 mb-0">
+                                            <ALink href='#' className='product-variation-clean' onClick={resetValueHandler}>Clean All</ALink>
+                                        </div>
                                     </div>
                                 </div> : ""
                         }
 
 
                         <div className='product-variation-price'>
-                                <div className="card-wrapper">
-                                    {
-                                        curIndex > -1 ?
-                                            <div className="single-product-price">
-                                                {
-                                                    product.variants[curIndex].price ?
-                                                        product.variants[curIndex].sale_price ?
-                                                            <div className="product-price mb-0">
-                                                                <ins className="new-price">${toDecimal(product.variants[curIndex].sale_price)}</ins>
-                                                                <del className="old-price">${toDecimal(product.variants[curIndex].price)}</del>
-                                                            </div>
-                                                            : <div className="product-price mb-0">
-                                                                <ins className="new-price">${toDecimal(product.variants[curIndex].price)}</ins>
-                                                            </div>
-                                                        : ""
-                                                }
-                                            </div> : ''
-                                    }
-                                </div>
+                            <div className="card-wrapper">
+                                {
+                                    curIndex > -1 ?
+                                        <div className="single-product-price">
+                                            {
+                                                product.variants[curIndex].price ?
+                                                    product.variants[curIndex].sale_price ?
+                                                        <div className="product-price mb-0">
+                                                            <ins className="new-price">${toDecimal(product.variants[curIndex].sale_price)}</ins>
+                                                            <del className="old-price">${toDecimal(product.variants[curIndex].price)}</del>
+                                                        </div>
+                                                        : <div className="product-price mb-0">
+                                                            <ins className="new-price">${toDecimal(product.variants[curIndex].price)}</ins>
+                                                        </div>
+                                                    : ""
+                                            }
+                                        </div> : ''
+                                }
+                            </div>
                         </div>
                     </> : ''
             }

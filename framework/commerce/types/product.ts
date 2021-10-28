@@ -22,6 +22,7 @@ export type ProductOption = {
 
 export type ProductOptionValues = {
   label: string
+  imageUrl: string
   hexColors?: string[]
 }
 
