@@ -14,17 +14,24 @@ import { ProductOptions } from '@components/product'
 
 function DetailOne(props) {
 
-    const [selectedOptions, setSelectedOptions] = useState ({})
-
     let router = useRouter();
     const { data, product, isStickyCart = false, adClass = '', isNav = true } = props;
-    const { toggleWishlist, addToCart, wishlist } = props;
+    const { onChangeVariant, toggleWishlist, addToCart, wishlist } = props;
     const [curColor, setCurColor] = useState('null');
     const [curSize, setCurSize] = useState('null');
     const [curIndex, setCurIndex] = useState(-1);
     const [cartActive, setCartActive] = useState(false);
     const [quantity, setQauntity] = useState(1);
 
+    var sOpt = {};
+    product.options.forEach((opt) => {
+        opt.values.forEach((v) => {
+            if (v.isDefault) {
+                sOpt[opt.displayName.toLowerCase()] = v.label.toLowerCase();
+            }
+        })
+    })
+    const [selectedOptions, setSelectedOptions] = useState(sOpt)
 
     // decide if the product is wishlisted
     let isWishlisted, colors = [], sizes = [];
@@ -233,7 +240,22 @@ function DetailOne(props) {
             <ProductOptions
                 options={product.options}
                 selectedOptions={selectedOptions}
-                setSelectedOptions={setSelectedOptions}
+                setSelectedOptions={(p) => {
+                    var vari = product.variants.find((d) => {
+                        var what = d.options.filter(opt => selectedOptions[opt.displayName.toLowerCase()] === opt.values[0].label.toLowerCase())
+                        return what.length === Object.keys(selectedOptions).length
+                    })
+
+                    if (vari) {
+                        product.images[0] = {
+                            alt: vari.defaultImage.altText,
+                            isDefault: false,
+                            url: vari.defaultImage.urlOriginal
+                        }
+                        onChangeVariant({...product})
+                    }
+                    setSelectedOptions(p)
+                }}
             />
 
             <Text
