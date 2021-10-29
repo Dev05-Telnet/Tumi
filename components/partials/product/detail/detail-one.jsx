@@ -241,6 +241,7 @@ function DetailOne(props) {
                 options={product.options}
                 selectedOptions={selectedOptions}
                 setSelectedOptions={(p) => {
+                    setSelectedOptions(p)
                     var vari = product.variants.find((d) => {
                         var what = d.options.filter(opt => selectedOptions[opt.displayName.toLowerCase()] === opt.values[0].label.toLowerCase())
                         return what.length === Object.keys(selectedOptions).length
@@ -252,9 +253,8 @@ function DetailOne(props) {
                             isDefault: false,
                             url: vari.defaultImage.urlOriginal
                         }
-                        onChangeVariant({...product})
+                        onChangeVariant({ ...product })
                     }
-                    setSelectedOptions(p)
                 }}
             />
 

@@ -33,11 +33,9 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
                   label={v.label}
                   imageUrl={v.imageUrl}
                   onClick={() => {
-                    setSelectedOptions((selectedOptions) => {
-                      return {
-                        ...selectedOptions,
-                        [opt.displayName.toLowerCase()]: v.label.toLowerCase(),
-                      }
+                    setSelectedOptions((selectedOptions = {}) => {
+                      selectedOptions[opt.displayName.toLowerCase()] = v.label.toLowerCase()
+                      return selectedOptions
                     })
                   }}
                 />
